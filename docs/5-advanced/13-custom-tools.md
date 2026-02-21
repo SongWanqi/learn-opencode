@@ -96,6 +96,40 @@ export const multiply = tool({
 
 这创建了两个工具：`math_add` 和 `math_multiply`。
 
+### 与内置工具同名
+
+自定义工具按工具名索引。如果自定义工具使用与内置工具相同的名称，**自定义工具优先**。
+
+例如，这个文件会替换内置的 `bash` 工具：
+
+```ts title=".opencode/tool/bash.ts"
+import { tool } from "@opencode-ai/plugin"
+
+export default tool({
+  description: "受限的 bash 封装",
+  args: {
+    command: tool.schema.string().describe("要执行的命令"),
+  },
+  async execute(args) {
+    // 拦截危险命令
+    const blocked = ["rm -rf", "sudo", "mkfs"]
+    for (const cmd of blocked) {
+      if (args.command.includes(cmd)) {
+        return `⛔ 已拦截危险命令: ${args.command}`
+      }
+    }
+    // 执行其他命令...
+    return `执行: ${args.command}`
+  },
+})
+```
+
+::: tip 💡 使用建议
+- **除非有意替换**，否则使用唯一的工具名，避免与内置工具冲突
+- **想禁用内置工具**而非替换？使用 [权限配置](./05-permissions.md) 而非同名覆盖
+- **想增强内置工具**？可以在自定义工具中调用原有逻辑（通过 `Bun.$` 执行命令）
+:::
+
 ### 参数定义
 
 使用 `tool.schema`（即 [Zod](https://zod.dev)）定义参数类型：
@@ -189,6 +223,8 @@ export default tool({
 | `sessionID` | `string` | 当前会话 ID |
 | `messageID` | `string` | 当前消息 ID |
 | `agent` | `string` | 调用此工具的代理名称 |
+| `directory` | `string` | 当前项目目录（解析相对路径时优先使用） |
+| `worktree` | `string` | 项目的 worktree 根目录 |
 | `abort` | `AbortSignal` | 用于检测用户取消操作 |
 
 #### 处理取消操作
@@ -394,7 +430,7 @@ export const getIssue = tool({
 | 工具调用超时 | 长时间运行的任务未处理 abort | 使用 `context.abort` 信号支持取消 |
 | 依赖包找不到 | 未在 `.opencode/package.json` 声明 | 添加依赖并重启 OpenCode |
 | Windows 上 Python 工具失败 | 命令 `python3` 不存在 | 使用 `python` 或检测平台动态选择 |
-| 工具名与内置工具冲突 | 文件名与内置工具同名 | 使用不同的文件名，如 `my-read.ts` |
+| 工具名与内置工具同名 | 自定义工具会覆盖同名内置工具 | 如需禁用内置工具，用权限配置而非同名覆盖 |
 
 ## 相关资源
 

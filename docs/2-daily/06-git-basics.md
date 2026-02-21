@@ -191,7 +191,7 @@ cd <repo>
 
 顺手加一个 `.gitignore`（避免把生成物、缓存、密钥提交进去）：
 
-```gitignore
+```bash
 # 依赖与构建产物
 node_modules/
 dist/
