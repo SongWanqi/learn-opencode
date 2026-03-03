@@ -262,6 +262,132 @@ permission:
 
 ---
 
+## 系统提示词的工作原理（重要）
+
+当你定义 Agent 的 prompt 时，它会如何与 OpenCode 的默认行为结合？
+
+### 提示词组装顺序
+
+每次发送请求时，系统提示词按以下顺序组装：
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  1. Agent prompt  或  Provider 默认提示词（二选一）          │
+│     ├─ 有 prompt → 使用你定义的                              │
+│     └─ 无 prompt → 使用模型默认（如 anthropic.txt）          │
+├─────────────────────────────────────────────────────────────┤
+│  2. 环境信息 + 指令文件（始终添加）                          │
+│     工作目录、git 状态、平台、日期                           │
+│     AGENTS.md、CLAUDE.md 等全局规则文件                      │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**关键点**：
+1. Agent prompt 和 Provider 默认提示词是**二选一**，不是叠加
+2. 环境信息和指令文件**始终添加**，无论是否有 Agent prompt
+
+### 内置 Agent 的提示词情况
+
+| Agent | 有自定义 prompt？ | 实际使用的提示词 |
+|-------|------------------|-----------------|
+| `build` | ❌ 无 | Provider 默认 |
+| `plan` | ❌ 无 | Provider 默认 |
+| `general` | ❌ 无 | Provider 默认 |
+| `explore` | ✅ 有 | 专用 prompt（文件搜索专家） |
+| `title` | ✅ 有 | 专用 prompt（生成会话标题） |
+| `summary` | ✅ 有 | 专用 prompt（生成会话摘要） |
+| `compaction` | ✅ 有 | 专用 prompt（压缩上下文） |
+
+### Provider 默认提示词长什么样？
+
+不同模型使用不同的默认提示词模板：
+
+| 模型 | 提示词文件 | 风格特点 |
+|------|-----------|---------|
+| Claude | `anthropic.txt` | 强调 TodoWrite、使用专用工具、简洁输出 |
+| GPT-5 | `codex_header.txt` | OpenAI Codex 专用 |
+| GPT / O1 / O3 | `beast.txt` | 强调持续迭代、联网研究、自主解决 |
+| Gemini | `gemini.txt` | 适配 Gemini 特性 |
+| Trinity | `trinity.txt` | Trinity 模型专用 |
+| 其他（Qwen 等）| `qwen.txt` | 类似 Anthropic 但不含 TodoWrite |
+
+> **说明**：未匹配到上述模型的会使用 `qwen.txt`（`PROMPT_ANTHROPIC_WITHOUT_TODO`）。
+
+::: details 查看示例：anthropic.txt 开头
+```text
+You are OpenCode, the best coding agent on the planet.
+
+You are an interactive CLI tool that helps users with software engineering tasks.
+Use the instructions below and the tools available to you to assist the user.
+
+# Tone and style
+- Only use emojis if the user explicitly requests it
+- Your responses should be short and concise
+- Output text to communicate with the user
+
+# Task Management
+You have access to the TodoWrite tools to help you manage and plan tasks.
+Use these tools VERY frequently...
+```
+:::
+
+::: details 查看示例：beast.txt 开头
+```text
+You are opencode, an agent - please keep going until the user's query
+is completely resolved, before ending your turn and yielding back to the user.
+
+You MUST iterate and keep going until the problem is solved.
+
+THE PROBLEM CAN NOT BE SOLVED WITHOUT EXTENSIVE INTERNET RESEARCH.
+You must use the webfetch tool to recursively gather all information...
+```
+:::
+
+### 这对自定义 Agent 意味着什么？
+
+**一句话总结**：Agent md 文件的正文就是你写的系统提示词，OpenCode 不会在它前面注入其他提示词。它**替代**默认的 `anthropic.txt` 或 `beast.txt`，然后在其**后面**追加环境信息和指令文件。
+
+**场景 1：你的 Agent 有 prompt**
+
+```markdown
+---
+description: 代码审查专家
+mode: subagent
+---
+
+你是代码审查专家，专注于安全和性能...
+```
+
+实际发送给模型的是：
+```
+你是代码审查专家，专注于安全和性能...    ← 你的 prompt（替代默认）
+You are powered by the model named...     ← 环境信息
+Working directory: /path/to/project       ← 环境信息
+...                                       ← AGENTS.md 内容（如有）
+```
+
+**场景 2：你的 Agent 无 prompt**
+
+```markdown
+---
+description: 通用助手
+mode: subagent
+---
+（正文为空）
+```
+
+实际发送给模型的是：
+```
+You are OpenCode, the best coding agent... ← Provider 默认
+You are powered by the model named...       ← 环境信息
+Working directory: /path/to/project         ← 环境信息
+...                                         ← AGENTS.md 内容（如有）
+```
+
+> **来源**：`session/llm.ts:67-80`、`session/system.ts:19-27`
+
+---
+
 ## 创建第一个 Agent（JSON 方式）
 
 在 `opencode.json` 中配置。这与 Markdown 方式等效，适合配置简单的 Agent 或进行覆盖配置。
