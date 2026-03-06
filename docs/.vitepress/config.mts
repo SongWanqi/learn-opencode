@@ -420,6 +420,11 @@ export default defineConfig({
         collapsed: true,
         items: [
           { text: '更新日志', link: '/changelog/' },
+          { text: 'v1.2.20', link: '/changelog/v1.2.20' },
+          { text: 'v1.2.19', link: '/changelog/v1.2.19' },
+          { text: 'v1.2.18', link: '/changelog/v1.2.18' },
+          { text: 'v1.2.17', link: '/changelog/v1.2.17' },
+          { text: 'v1.2.16', link: '/changelog/v1.2.16' },
           { text: 'v1.2.15', link: '/changelog/v1.2.15' },
           { text: 'v1.2.14', link: '/changelog/v1.2.14' },
           { text: 'v1.2.13', link: '/changelog/v1.2.13' },
@@ -806,6 +811,11 @@ export default defineConfig({
             collapsed: true,
             items: [
               { text: 'Changelog', link: '/en/changelog/' },
+              { text: 'v1.2.20', link: '/en/changelog/v1.2.20' },
+              { text: 'v1.2.19', link: '/en/changelog/v1.2.19' },
+              { text: 'v1.2.18', link: '/en/changelog/v1.2.18' },
+              { text: 'v1.2.17', link: '/en/changelog/v1.2.17' },
+              { text: 'v1.2.16', link: '/en/changelog/v1.2.16' },
               { text: 'v1.2.15', link: '/en/changelog/v1.2.15' },
               { text: 'v1.2.14', link: '/en/changelog/v1.2.14' },
               { text: 'v1.2.13', link: '/en/changelog/v1.2.13' },
