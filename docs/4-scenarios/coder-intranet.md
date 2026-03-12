@@ -20,7 +20,7 @@ prerequisite:
 
 # 内网/离线部署
 
-> 💡 **一句话总结**：用 5 个开关把外网请求关掉，让 OpenCode 在内网环境能跑起来。
+> 💡 **一句话总结**：用 7 个开关把外网请求关掉，让 OpenCode 在内网环境能跑起来。
 
 ## 📝 课程笔记
 
@@ -81,9 +81,12 @@ OpenCode 启动时会尝试以下外网请求：
 | 请求 | 用途 | 禁用方式 |
 |-----|------|---------|
 | `models.dev/api.json` | 获取模型列表 | 方案 A（完全离线）：`OPENCODE_DISABLE_MODELS_FETCH=true` + `OPENCODE_MODELS_PATH=...`；方案 B（内网镜像）：只设置 `OPENCODE_MODELS_URL=https://...`（不要设置 `OPENCODE_DISABLE_MODELS_FETCH=true`） |
-| npm registry | 安装内置插件 | `OPENCODE_DISABLE_DEFAULT_PLUGINS` |
-| GitHub releases | 检查更新 | `OPENCODE_DISABLE_AUTOUPDATE` 或 `autoupdate: false` |
-| LSP 服务器下载 | 语言服务器 | `OPENCODE_DISABLE_LSP_DOWNLOAD` |
+| npm registry | 安装内置插件 | `OPENCODE_DISABLE_DEFAULT_PLUGINS=true` |
+| GitHub releases | 检查更新 | `OPENCODE_DISABLE_AUTOUPDATE=true` 或 `autoupdate: false` |
+| LSP 服务器下载 | 语言服务器 | `OPENCODE_DISABLE_LSP_DOWNLOAD=true` |
+| 远程 skill 加载 | 加载外部 skill | `OPENCODE_DISABLE_EXTERNAL_SKILLS=true` |
+| 项目配置加载 | 扫描 .opencode/ | `OPENCODE_DISABLE_PROJECT_CONFIG=true` |
+| 共享功能 | 分享会话 | `OPENCODE_DISABLE_SHARE=true` |
 
 ::: info 📖 两种模型列表方案
 - 完全离线：下载 `models.json`，设置 `OPENCODE_MODELS_PATH`，并打开 `OPENCODE_DISABLE_MODELS_FETCH=true`
@@ -92,7 +95,29 @@ OpenCode 启动时会尝试以下外网请求：
 如果同时设置 `OPENCODE_MODELS_PATH` 和 `OPENCODE_MODELS_URL`，会优先读取 `PATH` 指向的本地文件。
 :::
 
-**只要把这 4 类请求全部禁用，OpenCode 就能在纯内网环境运行。**
+**只要把这 7 类请求全部禁用，OpenCode 就能在纯内网环境运行。**
+
+::: info 📋 配置文件也要检查
+除了设置环境变量，还要确保 `opencode.json` 中**没有**以下配置（否则仍会触发外网请求）：
+
+```jsonc
+{
+  "skills": {
+    "urls": ["https://..."]  // 删除远程 skill URL
+  },
+  "instructions": [
+    "https://..."  // 删除远程 instruction
+  ],
+  "auth": {
+    "example.com": {
+      "type": "wellknown"  // 删除 wellknown 认证
+    }
+  }
+}
+```
+
+**`.well-known/opencode`** 是远程配置加载机制，即使设置了环境变量，如果配置中使用了 `wellknown` 认证，仍会发起外网请求。
+:::
 
 ---
 
@@ -136,6 +161,9 @@ export OPENCODE_MODELS_PATH=~/.cache/opencode/models.json
 export OPENCODE_DISABLE_DEFAULT_PLUGINS=true
 export OPENCODE_DISABLE_AUTOUPDATE=true
 export OPENCODE_DISABLE_LSP_DOWNLOAD=true
+export OPENCODE_DISABLE_EXTERNAL_SKILLS=true
+export OPENCODE_DISABLE_PROJECT_CONFIG=true
+export OPENCODE_DISABLE_SHARE=true
 ```
 
 ```bash [macOS/Linux - 永久生效]
@@ -147,6 +175,9 @@ export OPENCODE_MODELS_PATH=~/.cache/opencode/models.json
 export OPENCODE_DISABLE_DEFAULT_PLUGINS=true
 export OPENCODE_DISABLE_AUTOUPDATE=true
 export OPENCODE_DISABLE_LSP_DOWNLOAD=true
+export OPENCODE_DISABLE_EXTERNAL_SKILLS=true
+export OPENCODE_DISABLE_PROJECT_CONFIG=true
+export OPENCODE_DISABLE_SHARE=true
 EOF
 
 source ~/.zshrc
@@ -158,6 +189,9 @@ $env:OPENCODE_MODELS_PATH = "$env:USERPROFILE\.cache\opencode\models.json"
 $env:OPENCODE_DISABLE_DEFAULT_PLUGINS = "true"
 $env:OPENCODE_DISABLE_AUTOUPDATE = "true"
 $env:OPENCODE_DISABLE_LSP_DOWNLOAD = "true"
+$env:OPENCODE_DISABLE_EXTERNAL_SKILLS = "true"
+$env:OPENCODE_DISABLE_PROJECT_CONFIG = "true"
+$env:OPENCODE_DISABLE_SHARE = "true"
 ```
 :::
 
@@ -412,7 +446,10 @@ opencode run "test" --print-logs --log-level DEBUG
 | `OPENCODE_DISABLE_DEFAULT_PLUGINS` | 禁止安装内置插件 | `true` |
 | `OPENCODE_DISABLE_AUTOUPDATE` | 禁止自动更新检查 | `true` |
 | `OPENCODE_DISABLE_LSP_DOWNLOAD` | 禁止下载 LSP 服务器 | `true` |
-| `OPENCODE_DISABLE_PROJECT_CONFIG` | （可选）禁用项目级 `.opencode/` 扫描 | `true` |
+| `OPENCODE_DISABLE_EXTERNAL_SKILLS` | 禁止加载远程 skill | `true` |
+| `OPENCODE_DISABLE_PROJECT_CONFIG` | 禁止扫描项目级 `.opencode/` 配置 | `true` |
+| `OPENCODE_DISABLE_SHARE` | 禁止共享功能 | `true` |
+| `OPENCODE_DISABLE_CLAUDE_CODE_SKILLS` | 禁止 Claude Code 兼容技能 | `true` |
 
 ::: tip 💡 优先级说明
 - 如果同时设置 `OPENCODE_MODELS_PATH` 和 `OPENCODE_MODELS_URL`，会优先读取 `OPENCODE_MODELS_PATH` 指向的本地文件
@@ -455,6 +492,9 @@ export OPENCODE_MODELS_PATH=~/.cache/opencode/models.json
 export OPENCODE_DISABLE_DEFAULT_PLUGINS=true
 export OPENCODE_DISABLE_AUTOUPDATE=true
 export OPENCODE_DISABLE_LSP_DOWNLOAD=true
+export OPENCODE_DISABLE_EXTERNAL_SKILLS=true
+export OPENCODE_DISABLE_PROJECT_CONFIG=true
+export OPENCODE_DISABLE_SHARE=true
 EOF
 
 echo "✅ 环境变量已添加到 $SHELL_RC"
@@ -479,6 +519,9 @@ export OPENCODE_MODELS_URL="$MODELS_MIRROR"
 export OPENCODE_DISABLE_DEFAULT_PLUGINS=true
 export OPENCODE_DISABLE_AUTOUPDATE=true
 export OPENCODE_DISABLE_LSP_DOWNLOAD=true
+export OPENCODE_DISABLE_EXTERNAL_SKILLS=true
+export OPENCODE_DISABLE_PROJECT_CONFIG=true
+export OPENCODE_DISABLE_SHARE=true
 EOF
 
 # 解决 SDK 安装卡住问题
@@ -503,11 +546,12 @@ echo "请运行: source $SHELL_RC"
 
 你学会了：
 
-1. **5 个关键开关**：完全离线（`OPENCODE_DISABLE_MODELS_FETCH` + `OPENCODE_MODELS_PATH`）或内网镜像（`OPENCODE_MODELS_URL`），再加上禁用内置插件/自动更新/LSP 下载
+1. **7 个关键开关**：完全离线（`OPENCODE_DISABLE_MODELS_FETCH` + `OPENCODE_MODELS_PATH`）或内网镜像（`OPENCODE_MODELS_URL`），再加上禁用内置插件/自动更新/LSP 下载/远程 skill/项目配置/共享功能
 2. **本地模型列表**：从外网下载 `models.json`，放到内网机器（或用 `OPENCODE_MODELS_URL` 指向内部 mirrors）
 3. **内部 Provider 配置**：用 `enabled_providers` 只启用内部网关
 4. **核心 SDK 安装问题**：通过创建空 `node_modules` 目录或其他方案解决
-5. **排查技巧**：用 `--print-logs --log-level DEBUG` 定位卡住位置
+5. **配置文件检查**：确保 `opencode.json` 中没有 `skills.urls`、`instructions` 中的 URL、以及 `auth` 中的 `wellknown` 认证
+6. **排查技巧**：用 `--print-logs --log-level DEBUG` 定位卡住位置
 
 ::: tip 💡 额外提示
 如果你的公司有内部 mirrors.dev 服务器，可以用 `OPENCODE_MODELS_URL` 替代 `OPENCODE_MODELS_PATH`：
