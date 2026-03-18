@@ -1,13 +1,13 @@
 ---
-title: "Connect MiniMax (M2.5/M2.1)"
-subtitle: "9.9 CNY Starter Monthly Plan Available"
+title: "Connect MiniMax (M2.7)"
+subtitle: "10% Off for Tutorial Users"
 course: "OpenCode Chinese Practical Course"
 stage: "Phase 1"
 lesson: "1.4d"
 duration: "15 minutes"
 practice: "5 minutes"
 level: "Beginner"
-description: "Get MiniMax API Key and connect M2.5, M2.1 models in OpenCode."
+description: "Get MiniMax API Key and connect M2.7 flagship model in OpenCode."
 tags:
   - "Model"
   - "MiniMax"
@@ -16,11 +16,15 @@ prerequisite:
   - "1.2 Installation"
 ---
 
-# Connect MiniMax (M2.5/M2.1)
+# Connect MiniMax (M2.7)
 
 > Estimated time: 10-15 minutes
 
-MiniMax offers models like M2.5 and M2.1, with a **Coding Plan** (e.g., Starter Monthly Plan) for trying out.
+**MiniMax M2.7** is a top-tier domestic model, optimized for code and Agent tasks, supporting model self-evolution.
+
+::: tip Recommended: Token Plan
+Tutorial users get **10% off**. We recommend the **Max** or **Pro** plan for best value.
+:::
 
 If you haven't read "What is an API Key", we recommend going back to [1.4 Overview](./04-connect).
 
@@ -45,15 +49,30 @@ If you haven't read "What is an API Key", we recommend going back to [1.4 Overvi
 
 ### Step 1: Register and Get API Key
 
-Visit MiniMax platform:
+Visit MiniMax platform (10% off for tutorial users):
 
-- https://platform.minimax.io (International)
-- https://platform.minimaxi.com (China)
+https://platform.minimaxi.com/subscribe/token-plan?code=2OOzWR9jAE&source=link
 
-MiniMax offers two ways to get your Key:
+::: tip Recommended Plans
+We recommend **Token Plan** **Max** or **Pro** plans:
+- **Max**: Best for heavy users, great value for high volume
+- **Pro**: Suitable for daily development, cost-effective
 
-- **Coding Plan (Monthly/Bundle)**: Subscribe via the page, then copy your exclusive Key from the plan management page
-- **Pay-as-you-go**: Create and copy your Key from the API Key page
+After subscribing, copy your exclusive API Key from the "Plan Management" page:
+
+<img src="/images/1-start/minimax-token-plan.png" alt="MiniMax Token Plan - Copy API Key" style="border: 1px solid #e1e4e8; border-radius: 6px; margin: 16px 0;" />
+
+> 💡 The screenshot shows the Token Plan page. Select "Token Plan" in the left navigation, then click the "Copy" button in the API Key section to get your key.
+:::
+
+**Why recommend MiniMax M2.7?**
+
+- 🏆 **Top-tier domestic model**: Ranked top 5 globally on Artificial Analysis, #1 in open source
+- 🚀 **Self-evolution capability**: Can build complex Agent Harness, participate in model iteration
+- 💻 **Software engineering expertise**: SWE-Pro 56.22%, close to Opus level
+- 📦 **End-to-end delivery**: VIBE-Pro 55.6%, supports complete project development
+- 🤝 **Agent Teams**: Native multi-agent collaboration support
+- 💰 **High cost-effectiveness**: Maintains consistent price advantages
 
 ---
 
@@ -69,66 +88,10 @@ Method A (Recommended to try first):
    ```
    /connect
    ```
-3. Search and select `MiniMax`, then paste your API Key
+3. Search `MiniMax`, select **MiniMax Coding Plan (minimaxi.com)**, then paste your API Key
 
-If MiniMax is not in your provider list, or you need to customize an Anthropic-compatible endpoint, use Method B.
+> 💡 China users should select the option with `(minimaxi.com)` suffix.
 
----
-
-### (Optional) Method B: Manual Custom Endpoint (Anthropic Compatible)
-
-> Applies when: You need to specify `baseURL`, or your version doesn't have a built-in MiniMax entry.
-
-MiniMax has two API endpoints:
-- **International**: `https://api.minimax.io/anthropic/v1`
-- **China**: `https://api.minimaxi.com/anthropic/v1`
-
-1. Edit `~/.config/opencode/opencode.json` and add provider:
-
-```json
-{
-  "$schema": "https://opencode.ai/config.json",
-  "provider": {
-    "minimax": {
-      "npm": "@ai-sdk/anthropic",
-      "options": {
-        "baseURL": "https://api.minimax.io/anthropic/v1"
-      },
-      "models": {
-        "MiniMax-M2.5": {
-          "name": "MiniMax-M2.5"
-        },
-        "MiniMax-M2.1": {
-          "name": "MiniMax-M2.1"
-        }
-      }
-    }
-  }
-}
-```
-
-> 💡 China users can change `baseURL` to `https://api.minimaxi.com/anthropic/v1`
-
-2. Run the login command to add your Key:
-
-```bash
-opencode auth login
-```
-
-In the interactive interface: select `Other` → enter provider ID: `minimax` → paste your API Key.
-
-::: warning Environment Variable Conflict
-If you have previously set `ANTHROPIC_AUTH_TOKEN` or `ANTHROPIC_BASE_URL`, it may affect Anthropic-compatible providers (including MiniMax).
-
-You can clear them first:
-
-```bash
-unset ANTHROPIC_AUTH_TOKEN
-unset ANTHROPIC_BASE_URL
-```
-:::
-
----
 
 ### Step 3: Select Model and Verify
 
@@ -138,7 +101,7 @@ Enter:
 /models
 ```
 
-Select `MiniMax-M2.5` or `MiniMax-M2.1` (or other models in your configuration/list), then send a test message:
+Select `MiniMax-M2.7` or `MiniMax-M2.7-highspeed` (or other models in your configuration/list), then send a test message:
 
 ```
 Hello, please introduce yourself

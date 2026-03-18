@@ -64,8 +64,8 @@ zhipuai-coding-plan/glm-4.7
 Each line is a **model ID** (format: `provider/model-name`). You can copy this ID and specify it at startup:
 
 ```bash
-# For example, start with Zhipu GLM-4.7
-opencode --model zhipuai-coding-plan/glm-4.7
+# For example, start with Zhipu GLM-5
+opencode --model zhipuai-coding-plan/glm-5
 ```
 
 ### Advanced Tip 1: Filter by Provider
@@ -276,7 +276,7 @@ This will list the Top 5 detailed bills:
 
 **The difference is clear at a glance**:
 - **Claude Opus**: Pay-per-use, powerful but really expensive, burned $1232.
-- **Zhipu GLM-4.7**: Shows $0.0000, **because I purchased a Coding Plan monthly subscription**.
+- **Zhipu GLM-5**: Shows $0.0000, **because I purchased a Coding Plan monthly subscription**.
 
 ::: tip 💡 Money-Saving Strategy
 This is the purpose of OpenCode's statistics feature—it tells you where your money went.

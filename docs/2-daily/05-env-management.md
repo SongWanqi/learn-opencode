@@ -64,8 +64,8 @@ zhipuai-coding-plan/glm-4.7
 每一行都是一个**模型 ID**（格式为 `提供商/模型名`）。你可以直接复制这个 ID，在启动时指定：
 
 ```bash
-# 比如直接用智谱 GLM-4.7 启动
-opencode --model zhipuai-coding-plan/glm-4.7
+# 比如直接用智谱 GLM-5 启动
+opencode --model zhipuai-coding-plan/glm-5
 ```
 
 ### 进阶技巧 1：只看特定厂商
@@ -276,7 +276,7 @@ opencode stats --models
 
 **一眼就能看出区别**：
 - **Claude Opus**：按量计费，虽然强但真贵，烧了我 $1232。
-- **智谱 GLM-4.7**：显示 $0.0000，**是因为我购买了 Coding Plan 包月套餐**。
+- **智谱 GLM-5**：显示 $0.0000，**是因为我购买了 Coding Plan 包月套餐**。
 
 ::: tip 💡 省钱策略
 这就是 OpenCode 统计功能的意义——它告诉你钱花哪儿了。

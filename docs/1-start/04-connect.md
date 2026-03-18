@@ -7,7 +7,7 @@ lesson: "1.4"
 duration: 15 分钟
 practice: 10 分钟
 level: 新手
-description: 连接智谱 GLM-4.7（国内首选），完成 OpenCode 的第一次对话。
+description: 连接 MiniMax M2.7（国产模型第一梯队），完成 OpenCode 的第一次对话。
 tags:
   - 模型
   - API Key
@@ -57,15 +57,15 @@ prerequisite:
 
 ## 先帮你做个决策：选哪条路线？
 
-::: tip 🎯 国内用户首选：智谱 GLM-4.7
+::: tip 🎯 国内用户首选：MiniMax M2.7
 
-**为什么推荐智谱？**
-- **第一梯队**：国产大模型领先者，推理和代码能力达到开源 SOTA
-- **稳定可靠**：国内直连，访问速度快、连接稳定
-- **功能强大**：Pro 套餐支持读图、联网搜索、网页读取
-- **价格实惠**：Coding Plan 20 元/月起步，量大管饱
+**为什么推荐 MiniMax M2.7？**
+- **国产第一梯队**：Artificial Analysis 全球排名 Top 5，开源模型第一
+- **自进化能力**：支持构建 Agent Harness，参与模型迭代
+- **代码能力强**：SWE-Pro 56.22%，接近 Opus 水平
+- **价格实惠**：Token Plan 29 元/月起步，Max/Pro 套餐性价比最高
 
-👉 **直接前往 [1.4c 连接智谱](./04c-zhipu)**
+👉 **直接前往 [1.4d 连接 MiniMax](./04d-minimax)**
 
 ---
 
@@ -76,10 +76,10 @@ prerequisite:
 
 | 路线 | 费用/门槛 | 网络要求 | 适合场景 | 去哪里 |
 |---|---|---|---|---|
-| **智谱 GLM-4.7（推荐）** | 20元/月起 | 国内直连 | 国内首选、日常开发 | [1.4c 连接智谱](./04c-zhipu) |
+| **MiniMax M2.7（推荐）** | 29元/月起 | 国内直连 | 国产首选、日常开发 | [1.4d 连接 MiniMax](./04d-minimax) |
 | OpenCode Zen 免费模型 | 限时免费 | 通常可直连 | 0 成本先跑通流程 | [1.4a 免费模型](./04a-free-models) |
+| 智谱 GLM-5 | 20元/月起 | 国内直连 | 日常开发 | [1.4c 连接智谱](./04c-zhipu) |
 | DeepSeek | 极便宜 | 国内直连 | 日常开发 | [1.4b 连接 DeepSeek](./04b-deepseek) |
-| MiniMax | 9.9 元起/按量 | 国内直连 | 尝鲜对比 | [1.4d 连接 MiniMax](./04d-minimax) |
 | Claude（Anthropic 官方） | 较贵 | 常需代理 | 复杂任务、英文项目 | [1.4e 连接 Claude](./04e-claude) |
 | 第三方中转 | 取决于中转 | 取决于中转 | 有 `baseURL + key` | [1.4f 第三方中转](./04f-claudecode-relay) |
 | Ollama 本地模型 | 免费 | 离线 | 隐私敏感、离线场景 | [1.4g 连接 Ollama](./04g-ollama) |

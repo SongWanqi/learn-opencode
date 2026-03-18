@@ -59,7 +59,7 @@ OpenCode Zen 像其他提供商一样工作：
 | Claude Haiku 3.5 | claude-3-5-haiku | `https://opencode.ai/zen/v1/messages` | `@ai-sdk/anthropic` |
 | Claude Opus 4.5 | claude-opus-4-5 | `https://opencode.ai/zen/v1/messages` | `@ai-sdk/anthropic` |
 | Claude Opus 4.1 | claude-opus-4-1 | `https://opencode.ai/zen/v1/messages` | `@ai-sdk/anthropic` |
-| MiniMax M2.1 | minimax-m2.1-free | `https://opencode.ai/zen/v1/messages` | `@ai-sdk/anthropic` |
+| MiniMax M2.7 | minimax-m2.7-free | `https://opencode.ai/zen/v1/messages` | `@ai-sdk/anthropic` |
 | Gemini 3 Pro | gemini-3-pro | `https://opencode.ai/zen/v1/models/gemini-3-pro` | `@ai-sdk/google` |
 | Gemini 3 Flash | gemini-3-flash | `https://opencode.ai/zen/v1/models/gemini-3-flash` | `@ai-sdk/google` |
 | GLM 4.6 | glm-4.6 | `https://opencode.ai/zen/v1/chat/completions` | `@ai-sdk/openai-compatible` |
@@ -88,8 +88,8 @@ https://opencode.ai/zen/v1/models
 |------|------|------|----------|----------|
 | Big Pickle | 免费 | 免费 | 免费 | - |
 | Grok Code Fast 1 | 免费 | 免费 | 免费 | - |
-| MiniMax M2.1 | 免费 | 免费 | 免费 | - |
-| GLM 4.7 | 免费 | 免费 | 免费 | - |
+| MiniMax M2.7 | 免费 | 免费 | 免费 | - |
+| GLM 5 | 免费 | 免费 | 免费 | - |
 | GLM 4.6 | $0.60 | $2.20 | $0.10 | - |
 | Kimi K2 | $0.40 | $2.50 | - | - |
 | Kimi K2 Thinking | $0.40 | $2.50 | - | - |
@@ -121,8 +121,8 @@ https://opencode.ai/zen/v1/models
 免费模型说明：
 
 - **Grok Code Fast 1**：限时免费，xAI 团队正在收集反馈以改进 Grok Code
-- **GLM 4.7**：限时免费，团队正在收集反馈以改进模型
-- **MiniMax M2.1**：限时免费，团队正在收集反馈以改进模型
+- **GLM 5**：限时免费，团队正在收集反馈以改进模型
+- **MiniMax M2.7**：限时免费，团队正在收集反馈以改进模型
 - **Big Pickle**：隐身模型，限时免费，团队正在收集反馈以改进模型
 
 ### 自动充值
@@ -142,8 +142,8 @@ https://opencode.ai/zen/v1/models
 所有模型托管在美国。提供商遵循零保留策略，不使用你的数据进行模型训练，但有以下例外：
 
 - **Grok Code Fast 1**：免费期间收集的数据可能用于改进 Grok Code
-- **GLM 4.7**：免费期间收集的数据可能用于改进模型
-- **MiniMax M2.1**：免费期间收集的数据可能用于改进模型
+- **GLM 5**：免费期间收集的数据可能用于改进模型
+- **MiniMax M2.7**：免费期间收集的数据可能用于改进模型
 - **Big Pickle**：免费期间收集的数据可能用于改进模型
 - **OpenAI API**：请求根据 [OpenAI 数据政策](https://platform.openai.com/docs/guides/your-data) 保留 30 天
 - **Anthropic API**：请求根据 [Anthropic 数据政策](https://docs.anthropic.com/en/docs/claude-code/data-usage) 保留 30 天

@@ -213,10 +213,10 @@ export default defineConfig({
             collapsed: true,
             items: [
               { text: '总览：第一次对话', link: '/1-start/04-connect' },
+              { text: '[推荐] MiniMax（M2.7）', link: '/1-start/04d-minimax' },
               { text: '免费模型（OpenCode Zen）', link: '/1-start/04a-free-models' },
-              { text: '[推荐] 智谱 GLM-4.7', link: '/1-start/04c-zhipu' },
+              { text: '智谱 GLM-5', link: '/1-start/04c-zhipu' },
               { text: 'DeepSeek', link: '/1-start/04b-deepseek' },
-              { text: 'MiniMax', link: '/1-start/04d-minimax' },
               { text: 'Claude（Anthropic）', link: '/1-start/04e-claude' },
               { text: 'Claude Code 中转', link: '/1-start/04f-claudecode-relay' },
               { text: 'Ollama（本地）', link: '/1-start/04g-ollama' },
@@ -605,6 +605,7 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                   { text: 'Overview: First Chat', link: '/en/1-start/04-connect' },
+                  { text: '[Recommended] MiniMax (M2.7)', link: '/en/1-start/04d-minimax' },
                   { text: 'Free Models (OpenCode Zen)', link: '/en/1-start/04a-free-models' },
                   { text: '[Recommended] Claude', link: '/en/1-start/04e-claude' },
                   { text: 'Claude Code Relay', link: '/en/1-start/04f-claudecode-relay' },
@@ -612,7 +613,6 @@ export default defineConfig({
                   { text: 'Ollama (Local)', link: '/en/1-start/04g-ollama' },
                   { text: 'DeepSeek', link: '/en/1-start/04b-deepseek' },
                   { text: 'GLM (Zhipu)', link: '/en/1-start/04c-zhipu' },
-                  { text: 'MiniMax', link: '/en/1-start/04d-minimax' },
                   { text: 'Qwen (Alibaba)', link: '/en/1-start/04i-alibaba' },
                   { text: 'GitHub Copilot', link: '/en/1-start/04j-github-copilot' },
                 ]

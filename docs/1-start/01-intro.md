@@ -99,7 +99,7 @@ prerequisite: []
 ### OpenCode（社区开源）
 
 - **模型**：75+ 模型自由切换
-- **价格**：免费 (配合[智谱 GLM-4.7 包月 ¥20 起](/1-start/04c-zhipu)等国内模型套餐)
+- **价格**：免费 (配合[智谱 GLM-5 包月 ¥20 起](/1-start/04c-zhipu)等国内模型套餐)
 - **优点**：数据隐私（直连 API/本地）、开源、模型自由、原生支持智谱/DeepSeek/通义/MiniMax、中文完善、跨平台（macOS/Linux/Windows）
 
 ### 怎么选？

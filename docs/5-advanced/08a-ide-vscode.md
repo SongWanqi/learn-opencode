@@ -88,9 +88,29 @@ prerequisite:
 3. `Cmd+Option+K` 插入文件引用
 4. 输入问题，回车发送
 
-### Context Awareness
+### 选中行自动感应
 
-扩展会自动分享你当前的选择或标签页给 OpenCode，无需手动复制粘贴。
+扩展会自动检测你在编辑器中选中的内容，并生成带行号的引用：
+
+| 选中内容 | 生成的引用 | 说明 |
+|---------|-----------|------|
+| 第 10 行 | `@file.ts#L10` | 单行 |
+| 第 10-20 行 | `@file.ts#L10-20` | 多行范围 |
+| 未选中 | `@file.ts` | 整个文件 |
+
+**使用示例**：
+
+1. 在编辑器中选中第 15-25 行代码
+2. 按 `Cmd+Option+K`
+3. OpenCode 输入框自动填入 `@src/utils.ts#L15-25`
+4. 输入「帮我优化这段代码」，AI 就只会看这 10 行
+
+::: tip 💡 为什么用行号而不是直接贴代码？
+行号引用让 AI 去读取文件，这样：
+- AI 能看到文件的完整上下文（上下相邻的函数、类型定义等）
+- 代码修改后，引用始终指向正确的位置
+- 避免对话内容过长，节省 token
+:::
 
 ---
 
@@ -208,3 +228,38 @@ $env:EDITOR = "code --wait"
 ## 下一课预告
 
 > 下一课我们将学习 ACP 协议，让你在 Zed、JetBrains、Neovim 等编辑器中使用 OpenCode。
+
+---
+
+## 附录：源码参考
+
+<details>
+<summary><strong>点击展开查看源码位置</strong></summary>
+
+> 更新时间：2026-03-10
+
+| 功能 | 文件路径 | 行号 |
+|-----|---------|------|
+| 选中行检测逻辑 | [`sdks/vscode/src/extension.ts`](https://github.com/anomalyco/opencode/blob/dev/sdks/vscode/src/extension.ts#L103-L136) | 103-136 |
+| 获取当前编辑器 | [`sdks/vscode/src/extension.ts`](https://github.com/anomalyco/opencode/blob/dev/sdks/vscode/src/extension.ts#L104) | 104 |
+| 行号格式化（单行/多行） | [`sdks/vscode/src/extension.ts`](https://github.com/anomalyco/opencode/blob/dev/sdks/vscode/src/extension.ts#L119-L133) | 119-133 |
+
+**关键代码片段**：
+
+```typescript
+// sdks/vscode/src/extension.ts:119-133
+const selection = activeEditor.selection
+if (!selection.isEmpty) {
+  // VSCode 行号是 0-based，转成 1-based
+  const startLine = selection.start.line + 1
+  const endLine = selection.end.line + 1
+
+  if (startLine === endLine) {
+    filepathWithAt += `#L${startLine}`      // 单行: @file.ts#L10
+  } else {
+    filepathWithAt += `#L${startLine}-${endLine}`  // 多行: @file.ts#L10-20
+  }
+}
+```
+
+</details>

@@ -1,13 +1,13 @@
 ---
-title: 连接 MiniMax（M2.5/M2.1）
-subtitle: 9.9 元 Starter 月卡可选
+title: 连接 MiniMax（M2.7）
+subtitle: 教程站专享 9 折优惠
 course: OpenCode 中文实战课
 stage: 第一阶段
 lesson: "1.4d"
 duration: 15 分钟
 practice: 5 分钟
 level: 新手
-description: 获取 MiniMax API Key，并在 OpenCode 中连接使用 M2.5、M2.1 等模型。
+description: 获取 MiniMax API Key，并在 OpenCode 中连接使用 M2.7 旗舰模型。
 tags:
   - 模型
   - MiniMax
@@ -16,11 +16,15 @@ prerequisite:
   - 1.2 安装
 ---
 
-# 连接 MiniMax（M2.5/M2.1）
+# 连接 MiniMax（M2.7）
 
 > 预计时间：10-15 分钟
 
-MiniMax 提供 M2.5、M2.1 等模型，并且有 **Coding Plan**（例如 Starter 月卡）适合尝鲜。
+**MiniMax M2.7** 是国产模型第一梯队，专为代码和 Agent 任务优化，支持模型自我进化。
+
+::: tip 推荐购买 Token Plan
+教程站用户专享 **9 折优惠**，推荐购买 **Max** 或 **Pro** 套餐，性价比最高。
+:::
 
 如果你还没看过“API Key 是什么”，建议先回到 [1.4 总览](./04-connect)。
 
@@ -45,14 +49,30 @@ MiniMax 提供 M2.5、M2.1 等模型，并且有 **Coding Plan**（例如 Starte
 
 ### 第 1 步：注册并获取 API Key
 
-访问 MiniMax 平台（以官网跳转为准）：
-- https://platform.minimax.io
-- https://platform.minimaxi.com
+访问 MiniMax 平台（教程站用户专享链接，9折优惠）：
 
-MiniMax 常见两种拿 Key 的方式：
+https://platform.minimaxi.com/subscribe/token-plan?code=2OOzWR9jAE&source=link
 
-- **Coding Plan（月卡/套餐）**：按页面提示订阅后，在套餐管理页复制专属 Key
-- **按量计费**：在 API Key/接口密钥页面创建并复制 Key
+::: tip 推荐套餐
+推荐购买 **Token Plan** 的 **Max** 或 **Pro** 套餐：
+- **Max**：重度用户首选，量大优惠
+- **Pro**：日常开发够用，性价比高
+
+订阅后在「套餐管理」页面复制专属 API Key：
+
+<img src="/images/1-start/minimax-token-plan.png" alt="MiniMax Token Plan 页面 - 复制 API Key" style="border: 1px solid #e1e4e8; border-radius: 6px; margin: 16px 0;" />
+
+> 💡 截图显示了 Token Plan 页面，左侧导航选择「Token Plan」，在 API Key 区域点击「复制」按钮获取密钥。
+:::
+
+**为什么推荐 MiniMax M2.7？**
+
+- 🏆 **国产模型第一梯队**：Artificial Analysis 全球排名前五，开源第一
+- 🚀 **自我进化能力**：能构建复杂 Agent Harness，参与模型自身迭代
+- 💻 **软件工程专长**：SWE-Pro 56.22%，接近 Opus 水平
+- 📦 **端到端交付**：VIBE-Pro 55.6%，支持完整项目开发
+- 🤝 **Agent Teams**：原生支持多智能体协作
+- 💰 **高性价比**：保持一贯价格优势
 
 ---
 
@@ -68,66 +88,10 @@ MiniMax 常见两种拿 Key 的方式：
    ```
    /connect
    ```
-3. 搜索并选择 `MiniMax`，粘贴 API Key
+3. 搜索 `MiniMax`，选择 **MiniMax Coding Plan (minimaxi.com)**，粘贴 API Key
 
-如果你的提供商列表里没有 MiniMax，或你需要自定义 Anthropic 兼容端点，可以使用方式 B。
+> 💡 国内用户推荐选择带有 `(minimaxi.com)` 后缀的选项。
 
----
-
-### （可选）方式 B：手动配置自定义端点（Anthropic 兼容）
-
-> 适用于：你需要指定 `baseURL`，或者你的版本里没有内置 MiniMax 入口。
-
-MiniMax 有两个 API 端点：
-- **国际版**：`https://api.minimax.io/anthropic/v1`
-- **国内版**：`https://api.minimaxi.com/anthropic/v1`
-
-1. 编辑 `~/.config/opencode/opencode.json`，添加 provider：
-
-```json
-{
-  "$schema": "https://opencode.ai/config.json",
-  "provider": {
-    "minimax": {
-      "npm": "@ai-sdk/anthropic",
-      "options": {
-        "baseURL": "https://api.minimax.io/anthropic/v1"
-      },
-      "models": {
-        "MiniMax-M2.5": {
-          "name": "MiniMax-M2.5"
-        },
-        "MiniMax-M2.1": {
-          "name": "MiniMax-M2.1"
-        }
-      }
-    }
-  }
-}
-```
-
-> 💡 国内用户可将 `baseURL` 改为 `https://api.minimaxi.com/anthropic/v1`
-
-2. 运行登录命令添加 Key：
-
-```bash
-opencode auth login
-```
-
-在交互界面里：选择 `Other` → 输入 provider ID：`minimax` → 粘贴你的 API Key。
-
-::: warning 环境变量冲突
-如果你之前设置过 `ANTHROPIC_AUTH_TOKEN` 或 `ANTHROPIC_BASE_URL`，可能会影响 Anthropic 兼容提供商（包括 MiniMax）。
-
-可以先清理：
-
-```bash
-unset ANTHROPIC_AUTH_TOKEN
-unset ANTHROPIC_BASE_URL
-```
-:::
-
----
 
 ### 第 3 步：选择模型并验证
 
@@ -137,7 +101,7 @@ unset ANTHROPIC_BASE_URL
 /models
 ```
 
-选择 `MiniMax-M2.5` 或 `MiniMax-M2.1`（或你配置/列表中的其他模型），然后发送一句话验证：
+选择 `MiniMax-M2.7` 或 `MiniMax-M2.7-highspeed`（或你配置/列表中的其他模型），然后发送一句话验证：
 
 ```
 你好，请介绍一下你自己

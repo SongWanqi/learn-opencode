@@ -59,7 +59,7 @@ You can also access models through the following API endpoints:
 | Claude Haiku 3.5 | claude-3-5-haiku | `https://opencode.ai/zen/v1/messages` | `@ai-sdk/anthropic` |
 | Claude Opus 4.5 | claude-opus-4-5 | `https://opencode.ai/zen/v1/messages` | `@ai-sdk/anthropic` |
 | Claude Opus 4.1 | claude-opus-4-1 | `https://opencode.ai/zen/v1/messages` | `@ai-sdk/anthropic` |
-| MiniMax M2.1 | minimax-m2.1-free | `https://opencode.ai/zen/v1/messages` | `@ai-sdk/anthropic` |
+| MiniMax M2.7 | minimax-m2.7-free | `https://opencode.ai/zen/v1/messages` | `@ai-sdk/anthropic` |
 | Gemini 3 Pro | gemini-3-pro | `https://opencode.ai/zen/v1/models/gemini-3-pro` | `@ai-sdk/google` |
 | Gemini 3 Flash | gemini-3-flash | `https://opencode.ai/zen/v1/models/gemini-3-flash` | `@ai-sdk/google` |
 | GLM 4.6 | glm-4.6 | `https://opencode.ai/zen/v1/chat/completions` | `@ai-sdk/openai-compatible` |
@@ -88,8 +88,8 @@ Pay per request. Prices below are **per 1 million tokens**:
 |-------|-------|--------|------------|-------------|
 | Big Pickle | Free | Free | Free | - |
 | Grok Code Fast 1 | Free | Free | Free | - |
-| MiniMax M2.1 | Free | Free | Free | - |
-| GLM 4.7 | Free | Free | Free | - |
+| MiniMax M2.7 | Free | Free | Free | - |
+| GLM 5 | Free | Free | Free | - |
 | GLM 4.6 | $0.60 | $2.20 | $0.10 | - |
 | Kimi K2 | $0.40 | $2.50 | - | - |
 | Kimi K2 Thinking | $0.40 | $2.50 | - | - |
@@ -121,8 +121,8 @@ You may see _Claude Haiku 3.5_ in your usage history — this is a low-cost mode
 Free model notes:
 
 - **Grok Code Fast 1**: Free for a limited time, the xAI team is collecting feedback to improve Grok Code
-- **GLM 4.7**: Free for a limited time, the team is collecting feedback to improve the model
-- **MiniMax M2.1**: Free for a limited time, the team is collecting feedback to improve the model
+- **GLM 5**: Free for a limited time, the team is collecting feedback to improve the model
+- **MiniMax M2.7**: Free for a limited time, the team is collecting feedback to improve the model
 - **Big Pickle**: Stealth model, free for a limited time, the team is collecting feedback to improve the model
 
 ### Auto-Reload
@@ -142,8 +142,8 @@ For example, if you set a monthly limit of $20, Zen won't use more than $20 per 
 All models are hosted in the United States. Providers follow a zero-retention policy and don't use your data for model training, with the following exceptions:
 
 - **Grok Code Fast 1**: Data collected during the free period may be used to improve Grok Code
-- **GLM 4.7**: Data collected during the free period may be used to improve the model
-- **MiniMax M2.1**: Data collected during the free period may be used to improve the model
+- **GLM 5**: Data collected during the free period may be used to improve the model
+- **MiniMax M2.7**: Data collected during the free period may be used to improve the model
 - **Big Pickle**: Data collected during the free period may be used to improve the model
 - **OpenAI API**: Requests are retained for 30 days according to [OpenAI's data policy](https://platform.openai.com/docs/guides/your-data)
 - **Anthropic API**: Requests are retained for 30 days according to [Anthropic's data policy](https://docs.anthropic.com/en/docs/claude-code/data-usage)

@@ -28,8 +28,8 @@ OpenCode includes a set of **completely free** models that require **no registra
 
 | Model ID | Name | Features |
 |----------|------|----------|
-| `glm-4.7-free` | GLM-4.7 | By Zhipu, supports reasoning, excellent Chinese performance |
-| `minimax-m2.1-free` | MiniMax M2.1 | By MiniMax, supports reasoning, 200K context |
+| `glm-5-free` | GLM-5 | By Zhipu, supports reasoning, excellent Chinese performance |
+| `minimax-m2.7-free` | MiniMax M2.7 | By MiniMax, supports reasoning, 200K context |
 | `gpt-5-nano` | GPT-5 Nano | By OpenAI, lightweight and fast |
 | `kimi-k2.5-free` | Kimi K2.5 | By Moonshot, supports reasoning, 256K context |
 | `big-pickle` | Big Pickle | Hidden model, limited-time free trial |

@@ -233,7 +233,7 @@ Kimi K2 model.
 
 | Model | Description |
 |-------|-------------|
-| `M2.1` | Latest model |
+| `M2.7` | Latest model |
 
 **Configuration**:
 ```bash
@@ -250,7 +250,7 @@ GLM series models.
 
 | Model | Description |
 |-------|-------------|
-| `GLM-4.7` | Latest model |
+| `GLM-5` | Latest model |
 
 **Configuration**:
 ```bash
