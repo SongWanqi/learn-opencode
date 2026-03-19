@@ -22,6 +22,9 @@ export default defineConfig({
   titleTemplate: ':title - AI 编程助手实战指南',
   description: 'OpenCode 是终端 AI 编程助手，本教程从零基础到进阶，教你用 AI 写代码、改 Bug、自动化办公。支持智谱、DeepSeek 等国产模型，完全免费开源。',
   lang: 'zh-CN',
+  
+  // 构建配置：启用死链接检查（开发时检查 404）
+  ignoreDeadLinks: false,
 
   // 站点地图（多语言支持）
   sitemap: {
