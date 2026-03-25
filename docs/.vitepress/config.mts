@@ -426,6 +426,8 @@ export default defineConfig({
         collapsed: true,
         items: [
           { text: '更新日志', link: '/changelog/' },
+          { text: 'v1.3.2', link: '/changelog/v1.3.2' },
+          { text: 'v1.3.1', link: '/changelog/v1.3.1' },
           { text: 'v1.3.0', link: '/changelog/v1.3.0' },
           { text: 'v1.2.27', link: '/changelog/v1.2.27' },
           { text: 'v1.2.26', link: '/changelog/v1.2.26' },
@@ -825,6 +827,8 @@ export default defineConfig({
             collapsed: true,
             items: [
               { text: 'Changelog', link: '/en/changelog/' },
+              { text: 'v1.3.2', link: '/en/changelog/v1.3.2' },
+              { text: 'v1.3.1', link: '/en/changelog/v1.3.1' },
               { text: 'v1.3.0', link: '/en/changelog/v1.3.0' },
               { text: 'v1.2.27', link: '/en/changelog/v1.2.27' },
               { text: 'v1.2.26', link: '/en/changelog/v1.2.26' },
